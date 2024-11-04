@@ -6,31 +6,24 @@ export function AboutPage() {
   return (
     <div className="container mx-auto px-4 py-8 space-y-12">
       <header className="text-center space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">About Our Company</h1>
+        <h1 className="text-4xl font-bold tracking-tight">About Us </h1>
         <p className="text-xl text-muted-foreground">
-          Discover our journey and meet the founder behind our success
+          Story behind this Project
         </p>
       </header>
 
       <section className="space-y-8">
-        <h2 className="text-3xl font-semibold">Our Story</h2>
+        <h2 className="text-3xl font-semibold">About Tech Hatti</h2>
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="space-y-4">
             <p className="text-lg">
-              Founded in 2015, our e-commerce journey began with a simple idea:
-              to provide high-quality, sustainable products that make a
-              difference in people's lives and the environment.
+            Tech Hatti is an e-commerce platform developed Jatin, as part of my final-year BCA project. 
             </p>
             <p className="text-lg">
-              What started as a small online store operating from a garage has
-              now grown into a thriving business, serving customers worldwide
-              and partnering with artisans and manufacturers who share our
-              values.
+            This project is dedicated to providing high-quality computer components for gamers and professionals. The store features a wide selection of essential parts, including RAM, motherboards, processors, graphics cards, gaming keyboards, cabinets, and other key components necessary for building or upgrading personal and professional computer systems.
             </p>
             <p className="text-lg">
-              Our commitment to sustainability, ethical sourcing, and
-              exceptional customer service has been the cornerstone of our
-              growth and success.
+            Through this project, I aim to demonstrate my ability to create a fully functional e-commerce site. Tech Hatti represents my dedication to understanding the complexities of online retail and my passion for delivering quality service to users.
             </p>
           </div>
           <img
@@ -42,29 +35,22 @@ export function AboutPage() {
       </section>
 
       <section className="space-y-8">
-        <h2 className="text-3xl font-semibold">Meet Our Founder</h2>
+        <h2 className="text-3xl font-semibold">Creator of this Project </h2>
         <Card>
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <img
-                src="https://www.mintface.xyz/content/images/2021/08/QmTndiF423kjdXsNzsip1QQkBQqDuzDhJnGuJAXtv4XXiZ-1.png"
-                alt="Founder's portrait"
-                className="rounded-full h-[300px] w-[300px] object-cover"
+                src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1280px-Flag_of_India.svg.png"
+                alt="Image"
+                className="rounded-full h-[200px] w-[200px] object-cover"
               />
-              <div className="space-y-4">
-                <h3 className="text-2xl font-semibold">Jane Doe</h3>
+              <div className="space-y-2">
+                <h3 className="text-2xl font-semibold">Jatin</h3>
                 <p className="text-lg">
-                  Jane Doe, our visionary founder, has always been passionate
-                  about combining business with purpose. With a background in
-                  environmental science and years of experience in retail, Jane
-                  set out to create a company that not only offers great
-                  products but also contributes positively to the world.
+                I am a motivated individual pursuing a Bachelor's degree in Computer Applications and currently working in IT at Jindal Industries Pvt. Ltd. in Hisar. This project is a reflection of my passion for technology and my commitment to continuous learning. I strive to stay updated with the latest industry trends, and I am eager to apply my skills and experiences in creating a meaningful and practical project like Tech Hatti.
                 </p>
                 <p className="text-lg">
-                  Under her leadership, our company has grown from a small
-                  startup to a recognized name in sustainable e-commerce, all
-                  while maintaining our core values and commitment to our
-                  customers and the planet.
+                
                 </p>
               </div>
             </div>
@@ -76,9 +62,7 @@ export function AboutPage() {
         <h2 className="text-3xl font-semibold">Our Mission</h2>
         <div className="bg-muted p-6 rounded-lg">
           <p className="text-lg italic">
-            "To provide sustainable, high-quality products that enhance our
-            customers' lives while minimizing our environmental impact and
-            supporting ethical business practices."
+          "To create a sustainable and user-focused e-commerce platform that enhances the online shopping experience while adhering to ethical practices."
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">

@@ -18,10 +18,7 @@ const Home: FC<HomeProps> = ({ categories, products }) => {
               Welcome to Tech Hatti
             </h1>
             <p className="mt-3 mx-auto text-base text-muted-foreground sm:text-lg md:mt-5 md:text-xl">
-              Discover the latest in electronics with top brands, unbeatable
-              prices, and fast delivery. From smartphones to smart home devices,
-              elevate your tech game with our wide selection tailored just for
-              you!
+            Tech Hatti is an e-commerce platform created by Jatin as a final-year project for his Bachelor of Computer Applications program.
             </p>
             <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
               <Button asChild>
