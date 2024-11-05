@@ -12,6 +12,7 @@ import { AboutPage } from "./pages/About";
 import { LoginPage } from "./pages/Login";
 import CartPage from "./pages/Cart";
 import OrdersPage from "./pages/Orders";
+import { ProductPage } from "./pages/ProductDetailPage";
 
 const App: FC = () => {
   const {
@@ -50,7 +51,8 @@ const App: FC = () => {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/auth" element={<LoginPage />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/orders/:userId" element={<OrdersPage />}/>
+          <Route path="/products/:productId" element={<ProductPage />} />
+          <Route path="/orders/:userId" element={<OrdersPage />} />
         </Routes>
       </main>
       <Footer />
