@@ -49,6 +49,14 @@ const Navbar: FC = () => {
                     Contact
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    to={`/orders/${user?.uid}`}
+                    className="text-sm md:text-base font-medium hover:text-primary"
+                  >
+                    Orders
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
