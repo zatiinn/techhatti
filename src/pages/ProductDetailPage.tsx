@@ -27,7 +27,6 @@ export function ProductPage() {
   }
 
   const handleAddToCart = async (product: Product) => {
-    console.log("Adding to cart: ", product)
     if (!auth.currentUser) {
       toast.error("Please login to add items to cart");
       navigate("/auth");
@@ -37,7 +36,13 @@ export function ProductPage() {
     try {
       setAddingToCart(product.id);
       await addToCart(product);
-      toast.success(`Added ${product.name} to cart`);
+      toast.success(`Added ${product.name} to cart`, {
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
     } catch (error) {
       const errorMessage = (error as Error).message;
 
