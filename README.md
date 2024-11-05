@@ -1,6 +1,6 @@
 # Tech Hatti
 
-# Techstack
+## Techstack
 
 - React
 - Firebase
