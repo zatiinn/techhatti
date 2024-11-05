@@ -1,7 +1,5 @@
 import { FC } from "react";
 import { Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
-import useStore from "./hooks/usetStore";
 import Navbar from "./components/navbar";
 import Home from "./pages/Home";
 import Footer from "./components/footer";
@@ -15,28 +13,6 @@ import OrdersPage from "./pages/Orders";
 import { ProductPage } from "./pages/ProductDetailPage";
 
 const App: FC = () => {
-  const {
-    products,
-    categories,
-    fetchProducts,
-    fetchCategories,
-    isLoading,
-    error,
-  } = useStore();
-
-  useEffect(() => {
-    fetchProducts();
-    fetchCategories();
-  }, [fetchProducts, fetchCategories]);
-
-  if (isLoading) {
-    return <div className="text-center p-4">Loading...</div>;
-  }
-
-  if (error) {
-    return <div className="text-center p-4 text-red-500">{error}</div>;
-  }
-
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -44,7 +20,7 @@ const App: FC = () => {
         <Routes>
           <Route
             path="/"
-            element={<Home categories={categories} products={products} />}
+            element={<Home />}
           />
           <Route path="/products" element={<ProductCatalogue />} />
           <Route path="/contact" element={<ContactPage />} />

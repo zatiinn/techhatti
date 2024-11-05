@@ -34,7 +34,9 @@ import { auth } from "@/lib/Firebase";
 
 const ProductCatalog = () => {
   const navigate = useNavigate();
-  const { categories, products, isLoading, error } = useStore();
+  const { categories, products, isLoading, error, user } = useStore();
+
+  console.log(user?.uid)
 
   // Cart store
   const { items: cartItems, addToCart, error: cartError } = useCartStore();
@@ -89,7 +91,13 @@ const ProductCatalog = () => {
     try {
       setAddingToCart(product.id);
       await addToCart(product);
-      toast.success(`Added ${product.name} to cart`);
+      toast.success(`Added ${product.name} to cart`, {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      });
     } catch (error) {
       const errorMessage = (error as Error).message;
 

@@ -26,7 +26,7 @@ const OrderStatusBadge: FC<OrderStatusBadgeProps> = ({ status }) => {
 
   return (
     <span
-      className={`px-2 py-1 rounded-full text-sm ${getStatusStyles(status)}`}
+      className={`px-3 py-1 rounded-lg text-sm ${getStatusStyles(status)}`}
     >
       {status}
     </span>
@@ -43,7 +43,7 @@ const OrderItemUI: FC<OrderItemProps> = ({ order }) => (
       <div className="space-y-1">
         <p className="font-medium">Order ID: {order.id}</p>
         <div className="space-y-1 text-sm text-gray-600">
-          <p>Total: ${order.total.toFixed(2)}</p>
+          <p>Total: ₹{order.total.toFixed(2)}</p>
           <p>Items: {order.items.length}</p>
           <p>Date: {order.createdAt.toDate().toLocaleDateString()}</p>
         </div>
@@ -53,13 +53,20 @@ const OrderItemUI: FC<OrderItemProps> = ({ order }) => (
 
     <div className="mt-4">
       <h4 className="font-medium mb-2">Order Items</h4>
-      <div className="space-y-2">
+      <div className="flex items-center justify-start gap-3 flex-wrap">
         {order.items.map((item) => (
-          <div key={item.id} className="flex justify-between text-sm">
-            <span>
-              {item.name} x{item.quantity}
-            </span>
-            <span>${(item.price * item.quantity).toFixed(2)}</span>
+          <div className="w-max flex items-center rounded-lg shadow-sm p-2 px-8 gap-2">
+            <div className="w-full">
+              <p className="text-base md:text-lg font-medium line-clamp-1">
+                {item.name}
+              </p>
+              <div className="w-full flex items-center gap-4">
+                <p className="text-sm md:text-base">
+                  Quantity: {item.quantity}
+                </p>
+                <p className="text-sm md:text-base">Price: ₹{item.price}</p>
+              </div>
+            </div>
           </div>
         ))}
       </div>
@@ -78,7 +85,7 @@ export const OrdersList: FC<OrdersListProps> = ({ userId }) => {
     fetchOrders(userId);
   }, [fetchOrders, userId]);
 
-  console.log(orders)
+  console.log(orders);
 
   if (isLoading) {
     return (
@@ -118,8 +125,6 @@ const OrdersPage: FC = () => {
   if (!userId) {
     return <div>Loading...</div>;
   }
-
-  console.log(userId)
 
   return (
     <div className="container mx-auto p-4">

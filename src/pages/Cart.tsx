@@ -16,6 +16,7 @@ import { auth } from "@/lib/Firebase";
 import { CreateOrderInput, OrderItem } from "@/lib/Types";
 import useOrdersStore from "@/hooks/orderStore";
 import toast from "react-hot-toast";
+import useStore from "@/hooks/usetStore";
 
 const Cart: FC = () => {
   const navigate = useNavigate();
@@ -30,6 +31,8 @@ const Cart: FC = () => {
     loading,
     clearCart,
   } = useCartStore();
+
+  const { user } = useStore();
 
   const { createOrder } = useOrdersStore();
 
@@ -96,10 +99,16 @@ const Cart: FC = () => {
       await clearCart();
 
       // Show success message
-      toast.success("Order Placed Successfully");
+      toast.success(`Order Placed Successfully ${orderId}`, {
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
 
       // Redirect to order confirmation page
-      navigate(`/orders/${orderId}`);
+      navigate(`/orders/${user?.uid}`);
     } catch (error) {
       console.log(error);
       toast.error(`Failed to place order: ${(error as Error).message}`);
