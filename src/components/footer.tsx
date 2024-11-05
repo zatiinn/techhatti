@@ -1,7 +1,9 @@
+import useStore from "@/hooks/usetStore";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 
 const Footer: FC = () => {
+  const {user} = useStore();
   return (
     <footer className="bg-muted">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -17,10 +19,10 @@ const Footer: FC = () => {
               Contact
             </Link>
             <Link
-              to="/Cart"
+              to={`/orders/${user?.uid}`}
               className="ml-6 text-muted-foreground hover:text-primary"
             >
-              Cart
+              Orders
             </Link>
           </div>
           <div className="mt-8 md:mt-0 md:order-1">
