@@ -34,12 +34,7 @@ import { auth } from "@/lib/Firebase";
 
 const ProductCatalog = () => {
   const navigate = useNavigate();
-  const {
-    categories,
-    products,
-    isLoading,
-    error,
-  } = useStore();
+  const { categories, products, isLoading, error } = useStore();
 
   // Cart store
   const { items: cartItems, addToCart, error: cartError } = useCartStore();
@@ -242,7 +237,13 @@ const ProductCatalog = () => {
                   return (
                     <Card key={product.id} className="relative">
                       <CardHeader className="p-0">
-                        <div className="w-full overflow-hidden rounded-t-lg bg-gray-200">
+                        \
+                        <div
+                          className="w-full overflow-hidden rounded-t-lg bg-gray-200"
+                          onClick={() => {
+                            navigate(`/products/${product.id}`);
+                          }}
+                        >
                           <img
                             alt={product.name}
                             className="h-full w-full object-cover object-center transition-transform duration-300 ease-in-out hover:scale-105"
