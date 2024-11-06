@@ -245,7 +245,6 @@ const ProductCatalog = () => {
                   return (
                     <Card key={product.id} className="relative">
                       <CardHeader className="p-0">
-                        \
                         <div
                           className="w-full overflow-hidden rounded-t-lg bg-gray-200"
                           onClick={() => {
