@@ -120,7 +120,7 @@ const Cart: FC = () => {
   // Calculate order summary
   const subtotal = getCartTotal();
   const shipping = subtotal > 0 ? 10 : 0;
-  const tax = subtotal * 0.02;
+  const tax = subtotal * 0.18;
   const total = subtotal + shipping + tax;
 
   if (loading) {
@@ -256,7 +256,7 @@ const Cart: FC = () => {
                 <span>₹{shipping.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
-                <span>Tax (2%)</span>
+                <span>GST (18%)</span>
                 <span>₹{tax.toFixed(2)}</span>
               </div>
               <div className="border-t pt-4">
