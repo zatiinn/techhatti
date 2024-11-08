@@ -146,14 +146,14 @@ const Navbar: FC = () => {
                 Home
               </a>
               <a 
-                href="/about" 
+                href="/About" 
                 className="text-sm font-medium hover:text-primary px-2 py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About
               </a>
               <a 
-                href="/contact" 
+                href="/Contact" 
                 className="text-sm font-medium hover:text-primary px-2 py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
