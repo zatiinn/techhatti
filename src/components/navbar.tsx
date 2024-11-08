@@ -1,195 +1,192 @@
-import { FC, useState } from "react";
-import { ShoppingCart, Menu, Search, X } from "lucide-react";
+import React, { useState } from "react";
+import { ShoppingCart, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const Navbar: FC = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // Simple mock of authentication state
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
-  };
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    setIsMobileMenuOpen(false);
   };
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
+    { href: "/orders", label: "Orders" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 bg-background border-b">
-      <div className="container mx-auto px-4">
-        {/* Main Navbar */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo - Always visible */}
-          <div className="flex-shrink-0">
+          {/* Logo Section */}
+          <div className="flex items-center gap-4 md:gap-12">
             <a href="/" className="flex items-center">
-              <span className="text-xl md:text-2xl font-bold text-primary">
-                Tech Hatti
+              <span className="text-xl md:text-2xl font-bold tracking-tight whitespace-nowrap">
+                <span className="text-primary">Tech</span>
+                <span className="text-zinc-800">Hatti</span>
               </span>
             </a>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center flex-1 justify-center space-x-4">
-            {/* Search Bar */}
-            <div className="relative w-96">
-              <input
-                type="text"
-                placeholder="Search products..."
-                className="w-full rounded-md px-4 py-2 pr-12 border focus:outline-none focus:ring-2 focus:ring-primary"
-                value={searchQuery}
-                onChange={handleSearch}
-              />
-              <span className="absolute inset-y-0 right-0 flex items-center pr-2">
-                <Button size="sm" variant="ghost">
-                  <Search className="h-5 w-5" />
-                </Button>
-              </span>
-            </div>
-
-            {/* Navigation Links */}
-            <nav className="flex items-center space-x-8 ml-4">
-              <a href="/" className="text-sm font-medium hover:text-primary">
-                Home
-              </a>
-              <a href="/about" className="text-sm font-medium hover:text-primary">
-                About
-              </a>
-              <a href="/contact" className="text-sm font-medium hover:text-primary">
-                Contact
-              </a>
+            
+            {/* Desktop Navigation */}
+            <nav className="hidden md:block">
+              <ul className="flex space-x-4">
+                {navLinks.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="text-sm md:text-base font-medium hover:text-primary transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </nav>
           </div>
 
-          {/* Right Side Actions */}
-          <div className="flex items-center space-x-2">
-            {/* Cart - Visible on all screens */}
+          {/* Right Section - Responsive Layout */}
+          <div className="flex items-center gap-2 md:gap-4">
+            {/* Search Bar - Hide on very small screens */}
+            <div className="hidden sm:block relative">
+              <input
+                type="search"
+                placeholder="Search..."
+                className="w-full md:w-auto px-3 py-1.5 md:px-4 md:py-2 rounded-md bg-muted text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+            
+            {/* Cart Button - Always visible */}
             <a href="/cart">
               <Button variant="ghost" size="icon" className="relative">
                 <ShoppingCart className="h-5 w-5" />
                 <span className="sr-only">Shopping Cart</span>
               </Button>
             </a>
-
-            {/* Desktop Auth Buttons */}
-            <div className="hidden md:flex items-center space-x-2">
-              {!isLoggedIn ? (
-                <>
-                  <a href="/auth">
-                    <Button variant="ghost" size="sm">Login</Button>
-                  </a>
-                  <a href="/auth">
-                    <Button size="sm">Sign Up</Button>
-                  </a>
-                </>
-              ) : (
-                <Button variant="ghost" size="sm" onClick={handleLogout}>
-                  Logout
-                </Button>
-              )}
-            </div>
-
+            
             {/* Mobile Menu Button */}
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
-              onClick={toggleMobileMenu}
-              aria-expanded={isMobileMenuOpen}
-              aria-label="Toggle navigation menu"
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded-md hover:bg-muted"
+              onClick={toggleMenu}
             >
-              {isMobileMenuOpen ? (
-                <X className="h-5 w-5" />
-              ) : (
-                <Menu className="h-5 w-5" />
-              )}
+              <div className="relative w-6 h-4 flex flex-col justify-center items-center">
+                <span className={`absolute h-0.5 bg-current rounded-full transition-all duration-300 ease-in-out w-6 ${
+                  isOpen 
+                    ? "rotate-45 translate-y-0"
+                    : "-translate-y-2"
+                }`}></span>
+                <span className={`absolute h-0.5 bg-current rounded-full transition-all duration-200 ease-in-out w-6 ${
+                  isOpen
+                    ? "opacity-0"
+                    : "opacity-100"
+                }`}></span>
+                <span className={`absolute h-0.5 bg-current rounded-full transition-all duration-300 ease-in-out w-6 ${
+                  isOpen
+                    ? "-rotate-45 translate-y-0"
+                    : "translate-y-2"
+                }`}></span>
+              </div>
+              <span className="sr-only">Menu</span>
             </Button>
-          </div>
-        </div>
 
-        {/* Mobile Menu */}
-        <div 
-          className={`lg:hidden transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
-          }`}
-        >
-          <div className="py-4 space-y-4">
-            {/* Mobile Search */}
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search products..."
-                className="w-full rounded-md px-4 py-2 pr-12 border focus:outline-none focus:ring-2 focus:ring-primary"
-                value={searchQuery}
-                onChange={handleSearch}
-              />
-              <span className="absolute inset-y-0 right-0 flex items-center pr-2">
-                <Button size="sm" variant="ghost">
-                  <Search className="h-5 w-5" />
-                </Button>
-              </span>
-            </div>
-
-            {/* Mobile Navigation Links */}
-            <nav className="flex flex-col space-y-4">
-              <a 
-                href="/" 
-                className="text-sm font-medium hover:text-primary px-2 py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Home
-              </a>
-              <a 
-                href="/about" 
-                className="text-sm font-medium hover:text-primary px-2 py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                About
-              </a>
-              <a 
-                href="/contact" 
-                className="text-sm font-medium hover:text-primary px-2 py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Contact
-              </a>
-            </nav>
-
-            {/* Mobile Auth Buttons */}
-            <div className="flex flex-col space-y-2 pt-2 border-t">
+            {/* Desktop Auth Buttons */}
+            <div className="hidden md:flex items-center gap-2">
               {!isLoggedIn ? (
                 <>
-                  <a href="/auth" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button className="w-full" variant="ghost">
-                      Login
-                    </Button>
+                  <a href="/auth">
+                    <Button variant="secondary">Login</Button>
                   </a>
-                  <a href="/auth" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button className="w-full">
-                      Sign Up
-                    </Button>
+                  <a href="/auth">
+                    <Button>Sign Up</Button>
                   </a>
                 </>
               ) : (
-                <Button 
-                  className="w-full" 
-                  variant="ghost" 
-                  onClick={() => {
-                    handleLogout();
-                    setIsMobileMenuOpen(false);
-                  }}
-                >
-                  Logout
-                </Button>
+                <Button onClick={handleLogout}>Logout</Button>
               )}
             </div>
           </div>
+        </div>
+
+        {/* Mobile Menu - Improved Layout */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isOpen 
+              ? "max-h-[32rem] opacity-100" 
+              : "max-h-0 opacity-0"
+          } border-t`}
+        >
+          <nav className="py-4">
+            <ul className="flex flex-col space-y-2">
+              {/* Mobile Search */}
+              <li className="px-4 pb-2 border-b">
+                <input
+                  type="search"
+                  placeholder="Search..."
+                  className="w-full px-3 py-2 rounded-md bg-muted text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </li>
+
+              {/* Navigation Links */}
+              {navLinks.map((link, index) => (
+                <li 
+                  key={link.label}
+                  className={`transform transition-all duration-300 ${
+                    isOpen 
+                      ? "translate-x-0 opacity-100" 
+                      : "translate-x-4 opacity-0"
+                  }`}
+                  style={{ 
+                    transitionDelay: `${index * 100}ms` 
+                  }}
+                >
+                  <a
+                    href={link.href}
+                    className="block px-4 py-2 text-sm hover:bg-muted rounded-md transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+
+              {/* Mobile Auth Buttons */}
+              <li 
+                className={`px-4 pt-2 border-t transform transition-all duration-300 ${
+                  isOpen 
+                    ? "translate-x-0 opacity-100" 
+                    : "translate-x-4 opacity-0"
+                }`}
+                style={{ 
+                  transitionDelay: `${navLinks.length * 100}ms` 
+                }}
+              >
+                {!isLoggedIn ? (
+                  <div className="flex flex-col gap-2">
+                    <a href="/auth" className="w-full">
+                      <Button variant="secondary" className="w-full">
+                        Login
+                      </Button>
+                    </a>
+                    <a href="/auth" className="w-full">
+                      <Button className="w-full">Sign Up</Button>
+                    </a>
+                  </div>
+                ) : (
+                  <Button onClick={handleLogout} className="w-full">
+                    Logout
+                  </Button>
+                )}
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </header>
