@@ -213,7 +213,6 @@ const useCartStore = create<CartState & CartActions>((set, get) => ({
   },
 }));
 
-// Set up auth state listener
 auth.onAuthStateChanged((user) => {
   if (user) {
     useCartStore.getState().initializeCart();

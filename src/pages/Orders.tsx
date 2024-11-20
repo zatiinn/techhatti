@@ -1,4 +1,3 @@
-// components/OrdersList.tsx
 import useOrdersStore from "@/hooks/orderStore";
 import { Order, OrderStatus } from "@/lib/Types";
 import { FC, useEffect } from "react";

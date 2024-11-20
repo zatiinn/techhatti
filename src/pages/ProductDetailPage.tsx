@@ -17,7 +17,6 @@ export function ProductPage() {
   const product = products?.find((item) => item.id === productId);
   const navigate = useNavigate();
 
-  // Cart store
   const { addToCart } = useCartStore();
   const [addingToCart, setAddingToCart] = useState<string | null>(null);
   const [retryCount, setRetryCount] = useState(0);

@@ -30,7 +30,7 @@ export function LoginPage() {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const name = formData.get("name") as string | null;
-    const isSignUp = !!name; // If name exists, we're in signup mode
+    const isSignUp = !!name;
 
     try {
       if (isSignUp) {

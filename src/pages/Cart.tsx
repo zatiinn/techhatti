@@ -71,7 +71,6 @@ const Cart: FC = () => {
 
     setIsPlacingOrder(true);
     try {
-      // Convert cart items to order items
       const orderItems: OrderItem[] = items.map((item) => ({
         id: item.productId,
         name: item.name,
@@ -84,7 +83,7 @@ const Cart: FC = () => {
         items: orderItems,
         total: total,
         shippingAddress: {
-          street: "", // These would typically come from a shipping form
+          street: "", 
           city: "",
           state: "",
           postalCode: "",
@@ -92,13 +91,10 @@ const Cart: FC = () => {
         },
       };
 
-      // Create the order
       const orderId = await createOrder(orderData);
 
-      // Clear the cart after successful order creation
       await clearCart();
 
-      // Show success message
       toast.success(`Order Placed Successfully ${orderId}`, {
         style: {
           borderRadius: "10px",
@@ -107,7 +103,6 @@ const Cart: FC = () => {
         },
       });
 
-      // Redirect to order confirmation page
       navigate(`/orders/${user?.uid}`);
     } catch (error) {
       console.log(error);
@@ -117,7 +112,6 @@ const Cart: FC = () => {
     }
   };
 
-  // Calculate order summary
   const subtotal = getCartTotal();
   const shipping = subtotal > 0 ? 10 : 0;
   const tax = subtotal * 0.18;

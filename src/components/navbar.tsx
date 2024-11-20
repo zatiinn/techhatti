@@ -20,7 +20,7 @@ const Navbar: FC = () => {
                 src={logo}
                 title="illusion"
                 alt="illusion-logo"
-                className="h-8 w-auto object-contain" // Updated height for better fit
+                className="h-8 w-auto object-contain" 
               />
             </Link>
             <nav className="hidden md:block">

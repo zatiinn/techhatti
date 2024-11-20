@@ -40,7 +40,6 @@ interface StoreState {
 }
 
 const useStore = create<StoreState>((set, get) => ({
-  // State
   user: null,
   loading: true,
   products: [],
@@ -50,7 +49,6 @@ const useStore = create<StoreState>((set, get) => ({
   isLoading: false,
   error: null,
 
-  // Auth Methods
   signUp: async (email: string, password: string, name: string) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -96,14 +94,12 @@ const useStore = create<StoreState>((set, get) => ({
     }
   },
 
-  // Order Methods
   placeOrder: async () => {
     const { user } = get();
     if (!user) return;
 
     try {
       await runTransaction(db, async (transaction) => {
-        // Create order
         const orderRef = doc(collection(db, "orders"));
         transaction.set(orderRef, {
           userId: user.uid,
@@ -127,7 +123,6 @@ const useStore = create<StoreState>((set, get) => ({
       const orders = querySnapshot.docs
         .map((doc) => ({ id: doc.id, ...doc.data() } as Order))
         .filter((order) => order.userId === user.uid)
-        // .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 
       set({ orders });
     } catch (error) {
@@ -136,7 +131,6 @@ const useStore = create<StoreState>((set, get) => ({
     }
   },
 
-  // Product and Category Methods
   fetchProducts: async () => {
     set({ isLoading: true, error: null });
     try {
@@ -178,7 +172,6 @@ const useStore = create<StoreState>((set, get) => ({
   },
 }));
 
-// Initialize auth state listener
 onAuthStateChanged(auth, (user) => {
   if (user) {
     useStore.setState({ user, loading: false });

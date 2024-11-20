@@ -38,7 +38,6 @@ const ProductCatalog = () => {
 
   console.log(user?.uid)
 
-  // Cart store
   const { items: cartItems, addToCart, error: cartError } = useCartStore();
 
   const [addingToCart, setAddingToCart] = useState<string | null>(null);

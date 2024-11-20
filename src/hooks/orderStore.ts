@@ -1,4 +1,3 @@
-// stores/orderStore.ts
 import { create } from "zustand";
 import {
   collection,
@@ -75,7 +74,6 @@ const useOrdersStore = create<OrdersState>((set, get) => ({
         updatedAt: timestamp,
       });
 
-      // Fetch updated orders
       await get().fetchOrders(orderData.userId);
 
       set({ isLoading: false });
@@ -99,7 +97,6 @@ const useOrdersStore = create<OrdersState>((set, get) => ({
         updatedAt: serverTimestamp(),
       });
 
-      // Update local state
       const orders = get().orders.map((order) =>
         order.id === orderId
           ? { ...order, status, updatedAt: Timestamp.now() }
