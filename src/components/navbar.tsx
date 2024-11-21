@@ -25,8 +25,8 @@ const Navbar: FC = () => {
     <header className="sticky top-0 z-10 bg-background border-b">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo Section */}
-          <div className="flex items-center gap-2 md:gap-4">
+          {}
+          <div className="flex items-center gap-2 md:gap-4 ml-2 md:ml-0">
             <Link to="/" className="flex items-center h-full">
               <img
                 src={logo}
@@ -36,7 +36,7 @@ const Navbar: FC = () => {
               />
             </Link>
 
-            {/* Desktop Navigation */}
+            {}
             <nav className="hidden md:block">
               <ul className="flex space-x-4">
                 {navLinks.map((link) => (
@@ -53,19 +53,19 @@ const Navbar: FC = () => {
             </nav>
           </div>
 
-          {/* Right Section */}
+          {}
           <div className="flex items-center gap-2 flex-1 md:justify-end">
-            {/* Search Bar */}
-            <div className="flex-grow md:flex-grow-0 md:max-w-sm">
+            {}
+            <div className="flex-grow md:flex-grow-0 md:max-w-sm mr-2 md:mr-0">
               <input
                 type="search"
                 placeholder="Search..."
                 className="px-4 py-2 w-full md:w-auto rounded-md bg-muted text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                style={{ maxWidth: "200px" }} // Limit width for smaller screens
+                style={{ maxWidth: "200px" }}
               />
             </div>
 
-            {/* Cart Button */}
+            {}
             <Link to={"/cart"}>
               <Button variant="ghost" size="icon" className="relative">
                 <ShoppingCart className="h-5 w-5" />
@@ -73,7 +73,7 @@ const Navbar: FC = () => {
               </Button>
             </Link>
 
-            {/* Mobile Menu Button */}
+            {}
             <Button
               variant="ghost"
               size="icon"
@@ -84,7 +84,7 @@ const Navbar: FC = () => {
               <span className="sr-only">Menu</span>
             </Button>
 
-            {/* Authentication Buttons */}
+            {}
             <div className="hidden md:flex items-center gap-2">
               {!user ? (
                 <>
@@ -102,7 +102,7 @@ const Navbar: FC = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {}
         <div
           className={`md:hidden ${isOpen ? "block" : "hidden"} border-t`}
         >
@@ -119,7 +119,7 @@ const Navbar: FC = () => {
                   </Link>
                 </li>
               ))}
-              {/* Mobile Auth Buttons */}
+              {}
               {!user ? (
                 <li className="px-4 pt-4 border-t">
                   <div className="flex flex-col gap-2">
