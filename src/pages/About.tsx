@@ -88,7 +88,7 @@ export function AboutPage() {
             <CardContent className="p-6 space-y-2">
               <h3 className="text-xl font-semibold">Community</h3>
               <p>
-                We support local artisans and give back to communities through
+                We support #MadeinIndia and give back to communities through
                 various initiatives.
               </p>
             </CardContent>
